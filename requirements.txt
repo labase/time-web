@@ -4,3 +4,5 @@ distribute==0.6.24
 gunicorn==0.17.4
 wsgiref==0.1.2
 qrcode>=2.0
+couchdb>=0.9
+WebTest>=2.0
