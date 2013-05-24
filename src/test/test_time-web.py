@@ -2,7 +2,7 @@
 # -*- coding: UTF8 -*-
 """
 ############################################################
-Tiem-Web - Teste
+Time-Web - Teste
 ############################################################
 
 :Author: *Carlo E. T. Oliveira*
@@ -18,7 +18,9 @@ import unittest
 from main import app
 from webtest import TestApp
 from webob import Request, Response
-
+import database
+ITEM = 'item'
+database.DRECORD = dict(admin = dict(name = ITEM, item_id = ITEM))
 class TestTime_Web(unittest.TestCase):
 
     def setUp(self):
@@ -29,7 +31,25 @@ class TestTime_Web(unittest.TestCase):
         "retorna a descricao do qrcode."
         result = self.app.get('/admin')
         assert result.status == '200 OK'
-        assert 'admin' in result , 'no admin in %s'%result
+        assert 'item' in result , 'no admin in %s'%result
+        pass
+
+    def test_register_record(self):
+        "Registra um item."
+        result = self.app.get('/record/new')
+        assert result.status == '200 OK'
+        assert 'Registro' in result , 'no cetoni in %s'%result
+        pass
+
+    def test_register_record_save(self):
+        "Salva o registro de um item."
+        #result = self.app.post('/record/save', dict(name='Teste CTONI', code='ctoni'))
+        result = self.app.post('/record/save', {'name':'Teste CTONI', 'item_id':'ctoni'})
+        assert result.status == '200 OK'
+        assert 'Teste CTONI' in result , 'no cetoni in %s'%result
+        assert 'ctoni' in database.DRECORD , 'no cetoni in %s'%database.DRECORD
+        result = self.app.get('/ctoni')
+        assert 'Teste CTONI' in result , 'did not save cetoni in %s'%result
         pass
 
 if __name__ == '__main__':

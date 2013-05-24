@@ -6,3 +6,4 @@ wsgiref==0.1.2
 qrcode>=2.0
 couchdb>=0.9
 WebTest>=2.0
+nose==1.1.2
