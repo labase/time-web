@@ -19,9 +19,10 @@ import bottle
 import os
 from couchdb import Server
 import database
+DIR = os.path.dirname(__file__)+'/'
 
 @route('/<request:re:\w\w\w\w\w>')
-@view('templates/record_get')
+@view(DIR+'templates/record_get')
 def record_from_code(request):
     try:
         item = database.DRECORD[request]
@@ -31,7 +32,7 @@ def record_from_code(request):
         pass
 
 @route('/record/new')
-@view('templates/record_new')
+@view(DIR+'templates/record_new')
 def record_register():
     return {}
 
@@ -41,7 +42,7 @@ def record_save():
         key = request.forms.item_id
         item = database.DRECORD[key] = dict(
             name=request.forms.name, item_id=key)
-        return template ('templates/record_get', item)
+        return template (DIR+'templates/record_get', item)
         return item
     except Exception:
         return "Registro não foi gravado"

@@ -20,7 +20,7 @@ Time Web - Record New
         <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon" />
     </head>
     <body>
-        <form action="Entrada" id="cadrastro" name="Cadastro">
+        <form action="save" id="cadastro" name="Cadastro" method="post">
                 <ul>
                         <li>
                                 Nome do objeto:</li>
@@ -33,6 +33,8 @@ Time Web - Record New
                 </ul>
                 <p style="margin-left: 40px;">
                         ​<input name="code" size="80" type="text"/></p>
-        </form>
+                 <p style="margin-left: 40px;">
+                        ​<input name="enviar" type="submit"/></p>
+       </form>
     </body>
 </html>

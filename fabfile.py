@@ -66,3 +66,8 @@ def localdep():
     localtest()
     _local_copy()
     #localzip()
+
+def venv():
+    local('virtualenv venv --distribute')
+    local('venv/bin/pip install -M -r requirements.txt')
+    local('heroku git:remote -a time-web')
